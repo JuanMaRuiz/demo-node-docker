@@ -12,3 +12,7 @@ services:
     #  - db
     volumes:
       - ./:/usr/src/app/
+      - app-dependencies/:/usr/src/app/node_modules
+
+volumes:
+  app-dependencies:
