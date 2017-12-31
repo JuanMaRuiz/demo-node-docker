@@ -7,10 +7,9 @@ const app = express();
 const PORT = 3000;
 const HOST = '0.0.0.0';
 
-var promise = mongoose.createConnection('mongodb://db/test', {
-  useMongoClient: true,
-  /* other options */
-});
+mongoose.connect('mongodb://db/test');
+
+mongoose.Promise = global.Promise;
 
 const Post = mongoose.model('Post', {
   title: String
@@ -18,7 +17,10 @@ const Post = mongoose.model('Post', {
 
 app.get('/', (req, res) => {
   let post = new Post({ title: 'Panceta' });
-  res.send('Post has been saved');
+  
+  post.save().then(() => {
+    res.send('Bazinga!! new post saved!');
+  });
 
 });
 

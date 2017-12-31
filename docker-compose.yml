@@ -8,8 +8,8 @@ services:
     build: .
     ports:
       - 3000:3000
-    #links:
-    #  - db
+    links:
+      - db
     volumes:
       - ./:/usr/src/app/
       - app-dependencies/:/usr/src/app/node_modules
